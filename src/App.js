@@ -29,7 +29,7 @@ class App extends Component {
 
     const {profile, education, experience} = this.state;
     
-    return (<div >
+    return (<div>
       <Input profile={profile} education={education}/>
       <CVPreview profile={profile} education={education}/>
     </div>
