@@ -1,16 +1,20 @@
-import React, { Profiler } from "react";
+import React, { Component, Profiler } from "react";
 
-const Input = (props) => {
-    const {profile, education, experience} = props;
+class Input extends Component{
+    constructor(props) {
+        super(props);
+      }
 
-    function onProfileChange(e) {
+
+    onProfileChange = (e) => {
         this.setState({
             profile:
                 {name: e.value}
         });
     };
 
-    return (
+    render(){
+        return (
 
         <div>
             {/*name, email, phone number */}
@@ -18,7 +22,7 @@ const Input = (props) => {
             <input 
                 id="nameInput" 
                 type="text"
-                onChange={onProfileChange}
+                // onChange={onProfileChange}
             />
             
             <label htmlFor="emailInput">Email:</label>
@@ -45,7 +49,7 @@ const Input = (props) => {
             <label htmlFor="tasksInput">Tasks:</label>
             <input id="tasksInput" type="text"></input>
         </div>
-    );
+    );}
 }
 
 export default Input;
