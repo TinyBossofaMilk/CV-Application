@@ -8,13 +8,14 @@ class App extends Component {
 
     this.state = {
       //profile
-      profile: {
-        name: "hello",
-        email: "sdlkfjalkfj@dlfkajsdlfkj.com"
-      },
+      name: "hello",
+      email: "sdlkfjalkfj@dlfkajsdlfkj.com",
       
-      //education
-      education: {},
+      
+      //education  (school name, title of study, date of study)
+      school: "",
+      major: "",
+      startDate: "",
 
       //experience
       experience: []
@@ -23,8 +24,8 @@ class App extends Component {
   }
 
   updateStateAttribute = (obj, value) => {
-    this.setState({
-      obj: value
+    this.setState(() => {
+      return {obj: value};
     });
   }
 
@@ -42,7 +43,7 @@ class App extends Component {
   
 
   render() {
-    const {profile, education, experience} = this.state;
+    const {name, email, school, major, startDate} = this.state;
     
     return (<div>
       {/* <Input profile={profile} education={education}/> */}
@@ -50,8 +51,13 @@ class App extends Component {
       <input 
           id="name" 
           type="text"
-          onChange={this.updateStateAttribute("profile.name", this.value)}
-          value={this.state.profile.name}
+          onChange={
+            // this.updateStateAttribute("profile.name", this.value)
+            (e) => {
+              this.setState({name: e.target.value})
+            }
+          }
+          value={this.state.name}
       />
       
       <label htmlFor="emailInput">Email:</label>
@@ -77,7 +83,7 @@ class App extends Component {
       
       <label htmlFor="tasksInput">Tasks:</label>
       <input id="tasksInput" type="text"></input>
-      <CVPreview profile={profile} education={education}/>
+      <CVPreview name={name} email={email}/>
     </div>
     );
   }

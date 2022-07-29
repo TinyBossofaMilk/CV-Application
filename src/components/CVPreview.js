@@ -3,7 +3,7 @@ import React from "react";
 // import
 
 const Preview = (props) => {
-    const {profile, education} = props;
+    const {name, email} = props;
 
     function createElementsforKeyValues (obj) {
         let output = "";
@@ -16,9 +16,7 @@ const Preview = (props) => {
     };
 
     return (
-        <ul>
-            {createElementsforKeyValues(profile)}
-        </ul>
+        <div>Name: {name}</div>
     );
 };
 
