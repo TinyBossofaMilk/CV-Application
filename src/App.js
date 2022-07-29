@@ -1,6 +1,8 @@
 import Input from './components/Input';
 import CVPreview from './components/CVPreview';
 import { Component } from 'react';
+import General from './components/General';
+import Education from './components/Education';
 
 class App extends Component {
   constructor () {
@@ -10,40 +12,31 @@ class App extends Component {
       //profile
       name: "hello",
       email: "sdlkfjalkfj@dlfkajsdlfkj.com",
-      
+      phoneNumber: "8186546",
       
       //education  (school name, title of study, date of study)
       school: "",
-      major: "",
-      startDate: "",
+      major: "Chemistry",
+      gradDate: "",
 
       //experience
+      // company name, position title, main tasks of your jobs, date from and until when you worked for that company)
       experience: []
       
     };
   }
 
-  updateStateAttribute = (obj, value) => {
-    this.setState(() => {
-      return {obj: value};
-    });
-  }
-
-  onProfileChange = (e) => {
-    // {console.log(e.target)}
-    // const key = e.target.id;
-    this.setState({
-        profile: {
-           name: e.target.value
-
-        }
-    });
+  updateStateAttribute = (obj, val) => {
+    this.setState({[obj]: val});
   };
-
+  set = val => {
+    console.log(val)
+    this.setState({ [val]: val });
+  };
   
 
   render() {
-    const {name, email, school, major, startDate} = this.state;
+    const {name, email, phoneNumber, school, major, gradDate} = this.state;
     
     return (<div>
       {/* <Input profile={profile} education={education}/> */}
@@ -52,38 +45,66 @@ class App extends Component {
           id="name" 
           type="text"
           onChange={
-            // this.updateStateAttribute("profile.name", this.value)
-            (e) => {
-              this.setState({name: e.target.value})
-            }
+            (e) => {this.updateStateAttribute("name", e.target.value)}
           }
           value={this.state.name}
       />
       
       <label htmlFor="emailInput">Email:</label>
-      <input id="emailInput" type="text"></input>
+      <input 
+        id="emailInput" 
+        type="text"
+        onChange={(e) => {this.updateStateAttribute("email", e.target.value)}}
+      />
       
       <label htmlFor="phoneInput">Phone Number:</label>
-      <input id="phoneInput" type="text"></input>
+      <input 
+        id="phoneInput" 
+        type="text"
+        onChange={(e) => {this.updateStateAttribute("phone", e.target.value)}}
+      />
       
       <label htmlFor="schoolInput">University:</label>
-      <input id="schoolInput" type="text"></input>
+      <input 
+        id="schoolInput" 
+        type="text"
+        onChange={(e) => {this.updateStateAttribute("school", e.target.value)}}
+      />
       
       <label htmlFor="majorInput">Major:</label>
-      <input id="majorInput" type="text"></input>
+      <input 
+        id="majorInput" 
+        type="text"
+        onChange={(e) => {this.updateStateAttribute("major", e.target.value)}}
+      />
       
       <label htmlFor="dateInput">Date:</label>
-      <input id="DateInput" type="DateInput"></input>
+      <input 
+        id="DateInput" 
+        type="DateInput"
+        onChange={(e) => {this.updateStateAttribute("gradDate", e.target.value)}}
+
+      />
 
       <label htmlFor="companyInput">Company:</label>
-      <input id="companyInput" type="text"></input>
+      <input 
+        id="companyInput" 
+        type="text"
+        onChange={(e) => {this.updateStateAttribute("school", e.target.value)}}
+      />
 
       <label htmlFor="positionInput">Position:</label>
-      <input id="positionInput" type="text"></input>
+      <input 
+        id="positionInput" 
+        type="text"
+        onChange={(e) => {this.updateStateAttribute("position", e.target.value)}}
+      />
       
       <label htmlFor="tasksInput">Tasks:</label>
       <input id="tasksInput" type="text"></input>
-      <CVPreview name={name} email={email}/>
+      <General name={name} email={email} phoneNumber={phoneNumber}/>
+      <Education school={school} major={major} gradDate={gradDate}/>
+      {/* <CVPreview name={name} email={email}/> */}
     </div>
     );
   }
