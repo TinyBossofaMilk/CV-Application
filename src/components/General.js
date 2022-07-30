@@ -6,7 +6,7 @@ const General = (props) => {
 
     return (
         <div>
-            <div>Name: {name}</div>
+            <h1>{name}</h1>
             <span>{email} {phoneNumber}</span>
         </div>
     );
