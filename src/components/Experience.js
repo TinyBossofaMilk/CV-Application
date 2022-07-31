@@ -6,12 +6,17 @@ import React from "react";
 const Experience = (props) => {
     const {exp} = props;
     
-    return (this.state.exp.map((e) => 
+    return (
         <div>
-            {/* {exp.company} {exp.position} {exp.tasks} */}
-            {e.company}
+            {exp.map((e) => {
+                return <div> Position: {e.position} at {e.company} doing 
+                {e.task.map(element => {
+                    return element;
+                })}
+                </div>;
+            })}
         </div>
-    ))    
+    );
 };
 
 export default Experience;

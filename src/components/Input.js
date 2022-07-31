@@ -16,7 +16,7 @@ class Input extends Component{
     render(){
         return (
 
-        <div>
+        <div id="input">
             {/*name, email, phone number */}
             <label htmlFor="nameInput">Name:</label>
             <input 
