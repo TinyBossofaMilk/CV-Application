@@ -50,12 +50,13 @@ class App extends Component {
   }
 
   addTask = (e) => {
-    const workExp = document.querySelector("#experienceInput");
+    const lastTask = Array.from(document.querySelectorAll("input#tasks")).pop();
     const newInput = document.createElement("input");
     newInput.id = "tasks";
     newInput.type = "text";
 
-    workExp.appendChild(newInput);
+    lastTask.insertAdjacentElement('afterend', newInput);
+    // lastTask.appendChild(newInput);
   };
 
   set = (obj, val) => {
