@@ -1,34 +1,43 @@
 import Input from './components/Input';
 import CVPreview from './components/CVPreview';
-import { Component } from 'react';
+// import { Component } from 'react';
+import React, { useState } from "react";
 import General from './components/General';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import styles from './style.css';
 
-class App extends Component {
-  constructor () {
-    super();
+const App = () => {
+  // constructor () {
+  //   super();
 
-    this.state = {
-      //profile
-      name: "Your Mom",
-      email: "thisisnotarealemail@emailservice.com",
-      phoneNumber: "81865461223",
+  //   this.state = {
+  //     //profile
+  //     name: "Your Mom",
+  //     email: "thisisnotarealemail@emailservice.com",
+  //     phoneNumber: "81865461223",
       
-      //education  (school name, title of study, date of study)
-      school: "San Luis Obispo",
-      major: "B.S. in Chemistry",
-      gradDate: "",
+  //     //education  (school name, title of study, date of study)
+  //     school: "San Luis Obispo",
+  //     major: "B.S. in Chemistry",
+  //     gradDate: "",
 
-      //experience
-      // company name, position title, main tasks of your jobs, date from and until when you worked for that company)
-      exp: []
-      // {company:"SRI", position: "Associate Researcher", task: ["did stuff", "went on my phone a lot"]}
-    };
-  }
+  //     //experience
+  //     // company name, position title, main tasks of your jobs, date from and until when you worked for that company)
+  //     exp: []
+  //     // {company:"SRI", position: "Associate Researcher", task: ["did stuff", "went on my phone a lot"]}
+  //   };
+  // }
 
-  addWorkExperience = (e) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [school, setSchool] = useState("");
+  const [major, setMajor] = useState("");
+  const [gradDate, setGradDate] = useState("");
+  const [exp, setExp] = useState([]);
+
+  const addWorkExperience = (e) => {
     const expFieldsArr = Array.from(document.querySelectorAll("#experienceInput>input"));
     const expObject = {
       company: expFieldsArr[0].value,
@@ -42,29 +51,29 @@ class App extends Component {
       expObject.task.push(expFieldsArr[i].value);
     }
 
-    this.setState({
-      exp:this.state.exp.concat(expObject)
-    })
+    // this.setState({
+    //   exp:this.state.exp.concat(expObject)
+    // })
+    setExp(exp.concat(expObject));
 
     expFieldsArr.forEach(input => input.value = '');
   }
 
-  addTask = (e) => {
+  const addTask = (e) => {
     const lastTask = Array.from(document.querySelectorAll("input#tasks")).pop();
     const newInput = document.createElement("input");
     newInput.id = "tasks";
     newInput.type = "text";
 
     lastTask.insertAdjacentElement('afterend', newInput);
-    // lastTask.appendChild(newInput);
   };
 
-  set = (obj, val) => {
-    this.setState({[obj]: val});
+  const set = (obj, val) => {
+    // this.setState({[obj]: val});
   };  
 
-  render() {
-    const {name, email, phoneNumber, school, major, gradDate, exp} = this.state;
+  // render() 
+  //   const {name, email, phoneNumber, school, major, gradDate, exp} = this.state;
     
     return (<div>
       <div id="generalInput" class="input">
@@ -73,22 +82,22 @@ class App extends Component {
         <input 
             id="name" 
             type="text"
-            onChange={(e) => {this.set("name", e.target.value)}}
-            value={this.state.name}
+            onChange={(e) => {setName(e.target.value)}}
+            // value={name}
             />
         
         <label htmlFor="emailInput">Email:</label>
         <input 
           id="emailInput" 
           type="text"
-          onChange={(e) => {this.set("email", e.target.value)}}
+          onChange={(e) => {setEmail(e.target.value)}}
           />
         
         <label htmlFor="phoneInput">Phone Number:</label>
         <input 
           id="phoneInput" 
           type="text"
-          onChange={(e) => {this.set("phoneNumber", e.target.value)}}
+          onChange={(e) => {setPhoneNumber(e.target.value)}}
           />
       </div>
   
@@ -98,21 +107,21 @@ class App extends Component {
         <input 
           id="schoolInput" 
           type="text"
-          onChange={(e) => {this.set("school", e.target.value)}}
+          onChange={(e) => {setSchool(e.target.value)}}
           />
         
         <label htmlFor="majorInput">Major:</label>
         <input 
           id="majorInput" 
           type="text"
-          onChange={(e) => {this.set("major", e.target.value)}}
+          onChange={(e) => {setMajor(e.target.value)}}
           />
         
         <label htmlFor="dateInput">Date:</label>
         <input 
           id="DateInput" 
           type="DateInput"
-          onChange={(e) => {this.set("gradDate", e.target.value)}}
+          onChange={(e) => {setGradDate(e.target.value)}}
           />
       </div>
 
@@ -138,14 +147,14 @@ class App extends Component {
 
         <button
           type='button'
-          onClick={e => this.addTask(e)}
+          onClick={addTask}
         >
           Add Task
         </button>
 
         <button 
           type='button'
-          onClick={(e) => {this.addWorkExperience(e)}}
+          onClick={addWorkExperience}
           >Submit Experience
         </button>
       </div>
@@ -157,7 +166,7 @@ class App extends Component {
       <Experience exp={exp}/>
     </div>
     );
-  }
+  
 }
 
 export default App;
